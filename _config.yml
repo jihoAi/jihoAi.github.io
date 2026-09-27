@@ -104,8 +104,6 @@ social_preview_image: # string, local or CORS resources
 
 # boolean type, the global switch for TOC in posts.
 toc: true
-kramdown:
-  math_engine: mathjax
   
 actions:
   # Display "Edit this post" action on each post page to encourage contributions.
