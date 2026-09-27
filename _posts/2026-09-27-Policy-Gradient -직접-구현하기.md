@@ -17,7 +17,9 @@ math: true
 
 ## 2. Policy Gradient
 Policy Gradient는 누적 보상의 합을 최대화하는 정책의 파라미터 θ를 찾는 것을 목적으로 한다. 수식으로는 다음과 같다
+
 $$
 J(\pi_\theta)=\mathop{\mathbb{E}}_{\tau\sim\theta}[R_t]
 $$
+
 즉 J를 최대화 하는 것이 Policy Gradient의 목적이 된다.
