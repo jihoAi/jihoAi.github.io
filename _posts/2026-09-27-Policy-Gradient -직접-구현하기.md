@@ -3,6 +3,7 @@ title: "Policy Gradient 직접 구현하기"
 date: 2026-09-27 18:30:00 +0900
 categories: [Reinforcement Learning]
 tags: [reinforcement-learning, policy-gradient, pytorch]
+math: true
 ---
 
 ## 1. 들어가며
