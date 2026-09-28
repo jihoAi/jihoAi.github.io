@@ -1,8 +1,8 @@
 ---
-title: "Policy Gradient 직접 구현하기"
+title: "Policy Gradient 공부하기"
 date: 2026-09-27 18:30:00 +0900
 categories: [Reinforcement Learning]
-tags: [reinforcement-learning, implementing]
+tags: [reinforcement-learning, theory]
 math: true
 ---
 
@@ -13,22 +13,20 @@ math: true
 
 공부한 자료는 Open AI의 [Spinning up in deep rl](https://spinningup.openai.com/en/latest/)를 주로 참고하였습니다.
 
-이번 포스팅은 Policy Gradient을 pytorch와 gym을 이용하여 구현하였습니다.
-
 ## 2. Policy Gradient
-Policy Gradient는 누적 보상의 합을 최대화하는 정책의 파라미터 θ를 찾는 것을 목적으로 한다.
+Policy Gradient는 누적 보상의 합을 최대화하는 정책의 파라미터 θ를 찾는 것을 목적으로 합니다.
 
 $$
 J(\pi_\theta)=\mathop{\mathbb{E}}_{\tau\sim\theta}[R_t]
 $$
 
-gradient ascent를 이용하여 policy를 업데이트한다.
+gradient ascent를 이용하여 policy를 업데이트합니다.
 
 $$
 \theta_{k+1}=\theta_k+\alpha \nabla_\theta J(\pi_\theta)|_{\theta_k}
 $$
 
-$$\nabla_theta J(\pi_\theta)$$는 정책의 gradient로 위와 같은 방식으로 정책을 최적화는 것을
+$$\nabla_\theta J(\pi_\theta)$$는 정책의 gradient로 위와 같은 방식으로 정책을 최적화는 것을
 policy gradient algorithm 이라고 부른다. policy gradient algorithm의 대표적인 예시로
 Vanilla Policy Gradient, TRPO, PPO 등이 있습니다. 수식은 다음과 같습니다.
 
@@ -65,3 +63,7 @@ $$\tau$$를 policy로부터 샘플링하면서 추정할 수 있습니다.
 $$
 \hat{g} = \frac{1}{|\mathcal{D}|} \sum_{\tau \in \mathcal{D}} \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t |s_t) R(\tau),
 $$
+
+## 3. 마치며
+다음 포스트부터는 Policy Gradient 알고리즘들을 직접 코딩해보며 Cart Pole 환경에서 직접 학습시켜
+결과를 보고 코드를 개선해나가도록 하겠습니다.
