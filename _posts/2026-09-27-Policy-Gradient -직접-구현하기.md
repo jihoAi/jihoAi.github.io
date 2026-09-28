@@ -33,7 +33,6 @@ policy gradient algorithm 이라고 부른다. policy gradient algorithm의 대�
 Vanilla Policy Gradient, TRPO, PPO 등이 있습니다. 수식은 다음과 같습니다.
 
 $$
-\[
 \begin{aligned}
 \nabla_\theta J(\pi_\theta)
 &= \nabla_\theta \mathbb{E}_{\tau \sim \pi_\theta}[R(\tau)] \\
@@ -46,9 +45,9 @@ $$
    \nabla_\theta \log P(\tau \mid \theta) R(\tau)
    \right]
 \end{aligned}
-\]
+$$
 
-\[
+$$
 \therefore\quad
 \nabla_\theta J(\pi_\theta)
 =
@@ -57,7 +56,6 @@ $$
 \sum_{t=0}^{T}
 \nabla_\theta \log \pi_\theta(a_t \mid s_t) R(\tau)
 \right]
-\]
 $$
 
 $$R$$은 return, $$\tau$$는 trajectory입니다.
