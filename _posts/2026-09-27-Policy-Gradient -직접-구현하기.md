@@ -25,7 +25,7 @@ $$
 gradient ascent를 이용하여 policy를 업데이트한다.
 
 $$
-theta_{k+1}=\theta_k+\alpha \nabla_\theta J(\pi_\theta)|_{\theta_k}
+\theta_{k+1}=\theta_k+\alpha \nabla_\theta J(\pi_\theta)|_{\theta_k}
 $$
 
 $$\nabla_theta J(\pi_\theta)$$는 정책의 gradient로 위와 같은 방식으로 정책을 최적화는 것을
