@@ -99,7 +99,7 @@ def get_return(self, rewards):
 ```
 
 $$
-G_t = r_t + \gamma r_{t+1} + \gamm^2 r_{t+2} + \cdots
+G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots
 $$
 
 라는 식을 그대로 이용하여서 return을 계산하여서 $$O(n^2)$$의 시간복잡도를 가진 코드를 만들었습니다. 하지만
