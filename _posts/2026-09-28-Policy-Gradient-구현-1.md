@@ -6,7 +6,7 @@ tags: [reinforcement-learning, implementing]
 math: true
 ---
 
-전체 코드는 저의 [깃허브](https://github.com)에서 보실 수 있습니다.
+전체 코드는 저의 [깃허브](https://github.com/jihoAi/RL_study)에서 보실 수 있습니다.
 
 ## 1. 실험 환경
 
