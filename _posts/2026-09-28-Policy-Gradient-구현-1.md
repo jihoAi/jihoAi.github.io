@@ -63,16 +63,12 @@ $$
 ### 3.1 Trajectory 수집
 
 trajectory를 수집하는 일은 Policy로부터 action을 골라서 환경에서 수행하면서 계산되는 action의 log 확률과 reward를 수집하였습니다.
-observation, action 등은 코드에서는 수집하긴 했지만 gradient를 계산하는데 직접적으로 사용되지는 않았습니다.
 
 ```python
-state_list = []
 reward_list = []
-action_list = []
 log_prob_list = []
 #생략
   while not (terminated or truncated):
-      state_list.append(obs)
       obs = torch.tensor(obs, dtype=torch.float32, device=self.device)
       logits = self.model(obs)
       dist = torch.distributions.Categorical(logits=logits)
@@ -81,7 +77,6 @@ log_prob_list = []
       obs, reward, terminated, truncated, _ = self.env.step(action.item())
 
       reward_list.append(reward)
-      action_list.append(action)
       log_prob_list.append(log_prob)
 ```
 ### 3.2 Return 계산
@@ -98,22 +93,15 @@ def get_return(self, rewards):
   return G
 ```
 
-$$
-G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots
-$$
-
-라는 식을 그대로 이용하여서 return을 계산하여서 $$O(n^2)$$의 시간복잡도를 가진 코드를 만들었습니다. 하지만
-
-$$
-G_t = r_t + \gamma G_{t+1}
-$$
-이라는 식으로 Return을 재귀적으로 표현할 수 있다는 것을 알고 현재의 코드로 수정하여 $$O(n)$$의 시간복잡도를 갖도록 개선하였습니다.
+처음에는 $$G_t$$를 계산할때 $$t$$ 시점 이후의 reward list를 순회하며 구현하였기 때문에 $$O(n^2)$$의 시간복잡도를 갖는
+코드로 구현하였습니다. 이후 $$G_t = r_t + \gamma G_{t+1}$$라는 재귀적 관계를 이용하여 뒤에서부터 Return을 계산하는 코드로 바꿔
+$$O(n)$$의 시간복잡도를 갖는 코드로 개선할 수 있었습니다.
 
 ### 3.3 Policy Loss 계산
 
 원래 Policy Gradient 방식은 Gradient Ascent 방식으로 파라미터를 업데이트 합니다.
-그러나 Pytorc의 일반적인 옵티마이저들은 loss를 최소화는 방식으로 설계되어있기 때문에
-목적함수에 -1을 곱하여 사용하였습니다.
+그러나 Pytorch의 일반적인 optimizer는 loss를 최소화는 방향으로 파라미터를 업데이트 하기 때문에
+목적함수에 -1을 곱하여 loss로 사용하였습니다.
 
 ```python
 G = self.get_return(reward_list)
@@ -133,6 +121,7 @@ self.optimizer.step()
 그리고 Policy 네트워크에 역전파합니다.
 
 ## 4. 결과
+
 CartPole 환경에서 5000개의 에피소드를 이용해서 Policy를 학습시켰습니다.
 그리고 학습률을 0.001 그리고 0.005 두 가지를 사용하여서 학습률에 따른 학습 양상을 비교해보겠습니다.
 
@@ -141,7 +130,22 @@ CartPole 환경에서 5000개의 에피소드를 이용해서 Policy를 학습�
 위의 그래프는 각 에피소드에서 받은 리워드를 할인하지 않고 모두 더한 값을 5개씩 묶어 이동평균을 이용해서 나타낸 것입니다.
 학습률이 0.001일 때는 에피소드별로 편차가 심하긴하지만 전반적으로 받는 리워드가 점점 상승하는 것을 알 수 있었습니다.
 
+![에이전트시각화(0.001)]!(/assets/gif/cartpole_agent1(lr001).gif)
+
 ![학습률 0.005](/assets/img/RewardTrend(lr005).png)
 
-그러나 학습률이 0.005일 때는 받는 리워드가 최대치까지 빠르게 늘지만 학습을 진행하면 최적 정책에 수렴하지 못하는 것을 볼 수 있습니다.
+그러나 학습률이 0.005일 때는 최대 리워드를 빨리 달성하였지만 이후 큰 변동이 나타났고 학습률 0.001의 경우보다
+높은 리워드를 안정적으로 유지하지 못하였습니다.
 
+이는 학습률이 너무 클 때 파라미터의 변화가 커서 학습이 불안정해질 수 있음을 보여줍니다.
+
+![에이전트시각화(0.005)]!(/assets/gif/cartpole_agent1(lr005).gif)
+
+## 5. 개선점
+
+위에서 Policy Gradient를 설명한 수식에서는 여러 Trajectory를 수집한 후 각 Trajectory에서 계산한 gradient의 평균을 사용하고 있습니다.
+
+그러나 제가 구현한 코드에서는 한 번에 하나의 Trajectory만 사용하여 Policy Network를 업데이트하고 있으며, loss를 계산할 때도 평균이 아닌 합을 사용하고 있습니다. 
+따라서 Trajectory의 길이에 따라 gradient의 크기가 달라질 수 있고, 학습 과정의 안정성에도 영향을 줄 수 있습니다.
+
+다음 포스팅에서는 여러 Trajectory를 수집한 후 gradient를 평균하여 Policy Network를 업데이트하는 방식으로 코드를 개선하고, 기존 구현과 학습 결과를 비교해보겠습니다.
