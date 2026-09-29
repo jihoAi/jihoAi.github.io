@@ -57,7 +57,7 @@ $$
 따라서 알고리즘에서 구현할 것은 아래와 같습니다.
 1. trajectory 수집
 2. trajectory의 Return 계산
-3. action의 log probablity 수집
+3. action의 log probability 수집
 4. 위 식을 참고하여 신경망의 loss 계산
 
 ### 3.1 Trajectory 수집
@@ -129,7 +129,7 @@ self.optimizer.zero_grad()
 loss.backward()
 self.optimizer.step()
 ```
-코드에서는 episode가 끝난 뒤에 그 에피소드의 Return을 계산하고 수집한 log probablity를 사용하여 loss를 계산하고 gradient를 계산합니다.
+코드에서는 episode가 끝난 뒤에 그 에피소드의 Return을 계산하고 수집한 log probability를 사용하여 loss를 계산하고 gradient를 계산합니다.
 그리고 Policy 네트워크에 역전파합니다.
 
 ## 4. 결과
