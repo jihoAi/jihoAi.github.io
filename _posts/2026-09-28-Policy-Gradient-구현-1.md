@@ -29,5 +29,5 @@ CartPole-v1의 observation, action space는 다음과 같습니다.
 ### 2.1 Policy Network
 
 ```python
-print("Hello")
+print("Hello World")
 ```
