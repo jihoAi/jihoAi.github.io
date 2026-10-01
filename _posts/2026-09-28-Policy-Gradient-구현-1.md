@@ -15,8 +15,8 @@ math: true
 학습에 사용한 환경은 gymnasium에 미리 만들어져 있는
 [CartPole-v1](https://gymnasium.farama.org/environments/classic_control/cart_pole/)을 사용했습니다.
 
-CartPole을 사용한 이유는 비교적 간단한 환경이기 때문에 기초적인 Policy Gradient 알고리즘으로도 에이전트를 학습시킬 수 있다고 생각했기 때문입니다.
-또한 현재 사용할 수 있는 컴퓨팅 자원이 한정적이기 때문에 선택하게 되었습니다.
+CartPole-v1을 사용한 이유는 비교적 observaiton, action space가 단순하기 때문에 기초적인 Policy Gradient 의 동작을 확인하기에 적합하다고 판단했습니다.
+또한 이번 포스팅은 Policy Gradient 알고리즘의 구현에 초점을 맞췄으며 제한된 컴퓨팅 자원을 고려하여 CartPole-v1 선택하게 되었습니다.
 
 CartPole-v1의 observation, action space는 다음과 같습니다.
 
@@ -50,7 +50,7 @@ Observation space 4개, action space가 2개이기 때문에 입력층의 노드
 ## 3. Policy Gradient
 
 $$
-\hat{g} = \frac{1}{|\mathcal{D}|} \sum_{\tau \in \mathcal{D}} \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t |s_t) R(\tau),
+\hat{g} = \frac{1}{|\mathcal{D}|} \sum_{\tau \in \mathcal{D}} \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t |s_t) G_t,
 $$
 
 그래디언트를 추정하기 위해서 trajectory의 Return과 정책 네트워크의 로그 확률의 그래디언트가 필요하다는 것을 알 수 있습니다.
@@ -100,7 +100,7 @@ $$O(n)$$의 시간복잡도를 갖는 코드로 개선할 수 있었습니다.
 ### 3.3 Policy Loss 계산
 
 원래 Policy Gradient 방식은 Gradient Ascent 방식으로 파라미터를 업데이트 합니다.
-그러나 Pytorch의 일반적인 optimizer는 loss를 최소화는 방향으로 파라미터를 업데이트 하기 때문에
+그러나 Pytorch의 일반적인 optimizer는 loss를 최소화하는 방향으로 파라미터를 업데이트 하기 때문에
 목적함수에 -1을 곱하여 loss로 사용하였습니다.
 
 ```python
@@ -134,21 +134,19 @@ CartPole 환경에서 5000개의 에피소드를 이용해서 Policy를 학습�
 
 ![학습률 0.005](/assets/img/RewardTrend(lr005).png)
 
-그러나 학습률이 0.005일 때는 최대 리워드를 빨리 달성하였지만 이후 큰 변동이 나타났고 학습률 0.001의 경우보다
-높은 리워드를 안정적으로 유지하지 못하였습니다.
-
-이는 학습률이 너무 클 때 파라미터의 변화가 커서 학습이 불안정해질 수 있음을 보여줍니다.
+이번 실험에서는 learning rate가 0.005일 때 상대적으로 큰 reward 변동이 나타났습니다. 
+이는 큰 learning rate로 인해 한 번의 업데이트에서 parameter가 크게 변화했기 때문일 가능성이 있습니다. 다만 Policy Gradient 자체의 높은 variance 역시 reward 변동에 영향을 줄 수 있습니다.
 
 ![에이전트시각화(0.005)](/assets/gif/cartpole_agent1(lr005).gif)
 
 ## 5. 개선점
 
-위에서 Policy Gradient를 설명한 수식에서는 여러 Trajectory를 수집한 후 각 Trajectory에서 계산한 gradient의 평균을 사용하고 있습니다.
+기존의 구현에서는 하나의 trajectory만을 사용하여 파라미터를 업데이트하였습니다. 그리고 각각의 time step에 대한 loss도 sum으로 계산하였습니다.
+따라서 trajectory의 길이에 다라서 gradient의 크기가 달라질 가능성이 있습니다. 따라서 loss를 각 trajectory의 transition 개수로 나눠 정규화하였습니다.
 
-그러나 제가 구현한 코드에서는 한 번에 하나의 Trajectory만 사용하여 Policy Network를 업데이트하고 있으며, loss를 계산할 때도 평균이 아닌 합을 사용하고 있습니다. 
-따라서 Trajectory의 길이에 따라 gradient의 크기가 달라질 수 있고, 학습 과정의 안정성에도 영향을 줄 수 있습니다.
+Rollout Buffer는 8개의 환경을 병렬로 실행하여 각각의 trajectory를 수집하고 trajectory의 reward와 log probability를 저장하기 위해 사용하였습니다. 여러 trajectory의 데이터를 모은 후 한 번에 Policy Network를 업데이트하도록 구현하였습니다.
 
-따라서 Rollout Buffer를 추가하여 한 번에 8개의 에피소드를 실행하고 해당 에피소드에서 나오는 log probability와 reward를 사용하여 정책을 학습시켰습니다.
+8개의 환경을 병렬로 실행하고 여러 episode의 데이터를 모아 한 번에 업데이트하도록 변경한 결과, 5000 episode를 학습하는 데 걸리는 시간이 약 20분에서 10분으로 감소하였습니다.
 
 ```python
 def update(self):
@@ -179,13 +177,10 @@ def update(self):
 
 ### 5.1 개선결과
 
-학습률 0.,001 0.003, 0.005로 학습을 3번 진행하였습니다. 그 결과 0.003이 가장 잘 학습되는 학습률로 결정하였고
-
-참고로 학습률이 0.001일 때는 리워드가 점점 개선되기는 하였지만 학습이 너무 느렸고 0.005일 때는 학습은 빨랐지만
-파라미터 변화가 커서 학습이 불안정하였습니다.
+학습률 0.001, 0.003, 0.005로 세가지 학습률을 비교하였고, 0.003의 학습률이 상대적으로 안정적인 학습 양상을 보였습니다.
 
 결과는 아래와 같습니다.
 
 ![개선 학습률 0.003](/assets/img/imroved(0.003).png)
 
-![에이전트시각화](assets/gif/cartpole_improved.gif)
+![에이전트시각화](/assets/gif/cartpole_improved.gif)
