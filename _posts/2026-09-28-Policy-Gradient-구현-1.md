@@ -188,4 +188,4 @@ def update(self):
 
 ![개선 학습률 0.003](/assets/img/imroved(0.003).png
 
-![에이전트시각화](/assets/img/agent_improved.gif)
+![에이전트시각화](assets/gif/cartpole_improved.gif)
