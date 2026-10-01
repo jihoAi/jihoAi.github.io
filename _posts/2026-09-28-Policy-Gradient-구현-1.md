@@ -148,4 +148,44 @@ CartPole 환경에서 5000개의 에피소드를 이용해서 Policy를 학습�
 그러나 제가 구현한 코드에서는 한 번에 하나의 Trajectory만 사용하여 Policy Network를 업데이트하고 있으며, loss를 계산할 때도 평균이 아닌 합을 사용하고 있습니다. 
 따라서 Trajectory의 길이에 따라 gradient의 크기가 달라질 수 있고, 학습 과정의 안정성에도 영향을 줄 수 있습니다.
 
-다음 포스팅에서는 여러 Trajectory를 수집한 후 gradient를 평균하여 Policy Network를 업데이트하는 방식으로 코드를 개선하고, 기존 구현과 학습 결과를 비교해보겠습니다.
+따라서 Rollout Buffer를 추가하여 한 번에 8개의 에피소드를 실행하고 해당 에피소드에서 나오는 log probability와 reward를 사용하여 정책을 학습시켰습니다.
+
+```python
+def update(self):
+  total_loss = 0
+
+  total_transitions = 0
+  for i in range(self.env.num_envs):
+    rewards = self.buffer.rewards[i]
+
+    log_probs = self.buffer.log_probs[i]
+
+    returns = self.get_return(rewards)
+    returns = torch.tensor(returns,dtype=torch.float32,device=self.device)
+    log_probs = torch.stack(log_probs)
+
+    loss = -torch.sum(log_probs * returns)
+    total_loss += loss
+    total_transitions += len(rewards)
+
+  total_loss /= total_transitions
+
+  self.optimizer.zero_grad()
+  total_loss.backward()
+  self.optimizer.step()
+
+  self.buffer.clear()
+```
+
+### 5.1 개선결과
+
+학습률 0.,001 0.003, 0.005로 학습을 3번 진행하였습니다. 그 결과 0.003이 가장 잘 학습되는 학습률로 결정하였고
+
+참고로 학습률이 0.001일 때는 리워드가 점점 개선되기는 하였지만 학습이 너무 느렸고 0.005일 때는 학습은 빨랐지만
+파라미터 변화가 커서 학습이 불안정하였습니다.
+
+결과는 아래와 같습니다.
+
+![개선 학습률 0.003](/assets/img/imroved(0.003).png
+
+![에이전트시각화](/assets/img/agent_improved.gif)
