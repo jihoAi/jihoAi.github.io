@@ -29,7 +29,7 @@ $$\nabla_{\theta} \int_x P_{\theta}(x) = \nabla_{\theta} 1 = 0.$$
 그리고 여기서 log derivative trick을 사용하면 아래와 같은 식을 얻을 수 있습니다.
 
 $$
-\begin{aligned}\\
+\begin{aligned}
 0&=\nabla_\theta\intop_{x}{P_\theta(x)}\\
 &=\intop_x{\nabla_\theta P_\theta(x)}\\
 &=\intop_x{P_\theta(x)\nabla_\theta \log P_\theta(x)}\\
