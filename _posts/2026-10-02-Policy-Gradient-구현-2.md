@@ -41,7 +41,7 @@ $$
 
 $$\underset{a_t\sim\pi_\theta}{\mathbb{E}}\left[\nabla_\theta \log\pi_\theta(a_t|s_t)b(s_t)\right].$$
 
-위의 식에서 $$\nabla_\theta \log\pi_\theta(a_t|s_t)$$ 의 기댓값이 0이 되기 때문에 $$b$$ 를 다음과 같이 변형할 수 있습니다.
+위의 식에서 정책 그래디언트의 기댓값이 0이 되기 때문에 다음과 같이 변형할 수 있습니다.
 
 $$\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\sum\limits_{t=0}^{T}{\nabla_\theta \log\pi_\theta(a_t|s_t)}\left(\sum\limits_{t'=t}^{T}{R(s_{t'},a_{t'},s_{t'+1})-b(s_t)}\right)\right].$$
 
