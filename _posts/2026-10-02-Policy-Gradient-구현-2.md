@@ -32,16 +32,16 @@ $$
 0 &= \nabla_{\theta} \int_x P_{\theta}(x) \\
 &= \int_x \nabla_{\theta} P_{\theta}(x) \\
 &= \int_x P_{\theta}(x) \nabla_{\theta} \log P_{\theta}(x) \\
-\therefore 0 &= \underE{x \sim P_{\theta}}{\nabla_{\theta} \log P_{\theta}(x)}.
+\therefore 0 &= \mathbb{E}{x \sim P_{\theta}}{\nabla_{\theta} \log P_{\theta}(x)}.
 $$
 
 이 성질을 목적함수의 gradient 계산에 직접 적용할 수 있습니다.
 
-$$\underE{a_t \sim \pi_{\theta}}{\nabla_{\theta} \log \pi_{\theta}(a_t|s_t) b(s_t)} = 0.$$
+$$\mathbb{E}{a_t \sim \pi_{\theta}}{\nabla_{\theta} \log \pi_{\theta}(a_t|s_t) b(s_t)} = 0.$$
 
 $$\nabla_\theta \log\pi_\theta(a_t|s_t)$$의 기댓값이 0이 되기 때문에 $$s_t$$에 관한 함수인 $$b$$를 다음과 같이 변형할 수 있습니다.
 
-$$\nabla_{\theta} J(\pi_{\theta}) = \underE{\tau \sim \pi_{\theta}}{\sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t |s_t) \left(\sum_{t'=t}^T R(s_{t'}, a_{t'}, s_{t'+1}) - b(s_t)\right)}.$$
+$$\nabla_{\theta} J(\pi_{\theta}) = \mathbb{E}{\tau \sim \pi_{\theta}}{\sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t |s_t) \left(\sum_{t'=t}^T R(s_{t'}, a_{t'}, s_{t'+1}) - b(s_t)\right)}.$$
 
 이러한 방식으로 사용되는 함수 $$b$$를 baseline이라고 부릅니다. 그리고  $$b(s_t) = V^{\pi}(s_t)$$의 형태로 사용하는 것이 일반적이라고 합니다.
 
