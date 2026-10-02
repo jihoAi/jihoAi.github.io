@@ -33,13 +33,13 @@ $$
 0&=\nabla_\theta\intop_{x}{P_\theta(x)}\\
 &=\intop_x{\nabla_\theta P_\theta(x)}\\
 &=\intop_x{P_\theta(x)\nabla_\theta logP_\theta(x)}\\
-\therefore&0=\underset{x\sim P_\theta}{mathbb{E}}\left[\nabla_\theta logP_\theta(x)\right]
+\therefore &0=\underset{x\sim P_\theta}{\mathbb{E}}\left[\nabla_\theta logP_\theta(x)\right]
 \end{aligned}
 $$
 
 이 성질을 목적함수의 gradient 계산에 직접 적용할 수 있습니다.
 
-$\underset{a_t\sim\pi_\theta}{\mathbb{E}}\left[\nabla_\theta log\pi_\theta(a_t|s_t)b(s_t)\right].$
+$$\underset{a_t\sim\pi_\theta}{\mathbb{E}}\left[\nabla_\theta log\pi_\theta(a_t|s_t)b(s_t)\right].$$
 
 $$\nabla_\theta \log\pi_\theta(a_t|s_t)$$ 의 기댓값이 0이 되기 때문에 $$s_t$$ 에 관한 함수인 $$b$$ 를 다음과 같이 변형할 수 있습니다.
 
