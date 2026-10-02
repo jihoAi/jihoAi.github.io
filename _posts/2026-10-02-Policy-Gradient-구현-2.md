@@ -41,12 +41,12 @@ $$
 
 $$\mathbb{E}{a_t \sim \pi_{\theta}}{\nabla_{\theta} \log \pi_{\theta}(a_t|s_t) b(s_t)} = 0.$$
 
-$$\nabla_\theta \log\pi_\theta(a_t|s_t)$$의 기댓값이 0이 되기 때문에 $$s_t$$에 관한 함수인 $$b$$를 다음과 같이 변형할 수 있습니다.
+$$\nabla_\theta \log\pi_\theta(a_t|s_t)$$ 의 기댓값이 0이 되기 때문에 $$s_t$$ 에 관한 함수인 $$b$$ 를 다음과 같이 변형할 수 있습니다.
 
 $$\nabla_{\theta} J(\pi_{\theta}) = \mathbb{E}{\tau \sim \pi_{\theta}}{\sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t |s_t) \left(\sum_{t'=t}^T R(s_{t'}, a_{t'}, s_{t'+1}) - b(s_t)\right)}.$$
 
-이러한 방식으로 사용되는 함수 $$b$$를 baseline이라고 부릅니다. 그리고  $$b(s_t) = V^{\pi}(s_t)$$의 형태로 사용하는 것이 일반적이라고 합니다.
+이러한 방식으로 사용되는 함수 $$b$$ 를 baseline이라고 부릅니다. 그리고  $$b(s_t) = V^{\pi}(s_t)$$ 의 형태로 사용하는 것이 일반적이라고 합니다.
 
-이때 가치함수 $$V$$는 정확히 알 수 없고 정책을 학습시키는 동시에 학습됩니다. 딥러닝을 사용하는 경우에는 Return과 $$V$$의 값을 MSE를 통해 학습됩니다.
+이때 가치함수 $$V$$ 는 정확히 알 수 없고 정책을 학습시키는 동시에 학습됩니다. 딥러닝을 사용하는 경우에는 Return과 $$V$$ 의 값을 MSE를 통해 학습됩니다.
 
 그리고 이런 baseline을 이용하는 경우 정책의 gradient를 추정하는데 상당한 variance를 줄여준다고 합니다.
