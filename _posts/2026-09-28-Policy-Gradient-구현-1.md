@@ -181,6 +181,6 @@ def update(self):
 
 결과는 아래와 같습니다.
 
-![개선 학습률 0.003](/assets/img/imroved(0.003).png)
+![개선 학습률 0.003](/assets/img/improved(0.003).png)
 
 ![에이전트시각화](/assets/gif/cartpole_improved.gif)
