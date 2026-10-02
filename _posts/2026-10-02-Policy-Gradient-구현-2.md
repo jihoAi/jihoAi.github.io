@@ -32,18 +32,18 @@ $$
 \begin{aligned}\\
 0&=\nabla_\theta\intop_{x}{P_\theta(x)}\\
 &=\intop_x{\nabla_\theta P_\theta(x)}\\
-&=\intop_x{P_\theta(x)\nabla_\theta logP_\theta(x)}\\
-\therefore &0=\underset{x\sim P_\theta}{\mathbb{E}}\left[\nabla_\theta logP_\theta(x)\right]
+&=\intop_x{P_\theta(x)\nabla_\theta \log P_\theta(x)}\\
+\therefore &0=\underset{x\sim P_\theta}{\mathbb{E}}\left[\nabla_\theta \log P_\theta(x)\right]
 \end{aligned}
 $$
 
 이 성질을 목적함수의 gradient 계산에 직접 적용할 수 있습니다.
 
-$$\underset{a_t\sim\pi_\theta}{\mathbb{E}}\left[\nabla_\theta log\pi_\theta(a_t|s_t)b(s_t)\right].$$
+$$\underset{a_t\sim\pi_\theta}{\mathbb{E}}\left[\nabla_\theta \log\pi_\theta(a_t|s_t)b(s_t)\right].$$
 
-$$\nabla_\theta log\pi_\theta(a_t|s_t)$$ 의 기댓값이 0이 되기 때문에 $$s_t$$ 에 관한 함수인 $$b$$ 를 다음과 같이 변형할 수 있습니다.
+$\nabla_\theta \log\pi_\theta(a_t|s_t)$ 의 기댓값이 0이 되기 때문에 $s_t$ 에 관한 함수인 $b$ 를 다음과 같이 변형할 수 있습니다.
 
-$$\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\sum\limits_{t=0}^{T}{\nabla_\theta log\pi_\theta(a_t|s_t)}\left(\sum\limits_{t'=t}^{T}{R(s_{t'},a_{t'},s_{t'+1})-b(s_t)}\right)\right].$$
+$$\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\sum\limits_{t=0}^{T}{\nabla_\theta \log\pi_\theta(a_t|s_t)}\left(\sum\limits_{t'=t}^{T}{R(s_{t'},a_{t'},s_{t'+1})-b(s_t)}\right)\right].$$
 
 이러한 방식으로 사용되는 함수 $$b$$ 를 baseline이라고 부릅니다. 그리고  $$b(s_t) = V^{\pi}(s_t)$$ 의 형태로 사용하는 것이 일반적이라고 합니다.
 
