@@ -29,10 +29,12 @@ $$\nabla_{\theta} \int_x P_{\theta}(x) = \nabla_{\theta} 1 = 0.$$
 그리고 여기서 log derivative trick을 사용하면 아래와 같은 식을 얻을 수 있습니다.
 
 $$
-0 &= \nabla_{\theta} \int_x P_{\theta}(x) \\
-&= \int_x \nabla_{\theta} P_{\theta}(x) \\
-&= \int_x P_{\theta}(x) \nabla_{\theta} \log P_{\theta}(x) \\
-\therefore 0 &= \mathbb{E}{x \sim P_{\theta}}{\nabla_{\theta} \log P_{\theta}(x)}.
+\begin{aligned}\\
+0&=\nabla_\theta\intop_{x}{P_\theta(x)}\\
+&=\intop_x{\nabla_\theta P_\theta(x)}\\
+&=\intop_x{P_\theta(x)\nabla_\theta logP_\theta(x)}\\
+\therefore&0=\underset{x\sim P_\theta}{mathbb{E}\left[\nabla_\theta logP_\theta(x)\right]} 
+\end{aligned}
 $$
 
 이 성질을 목적함수의 gradient 계산에 직접 적용할 수 있습니다.
