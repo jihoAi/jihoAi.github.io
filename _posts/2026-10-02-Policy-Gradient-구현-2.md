@@ -56,6 +56,8 @@ $$\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\su
 
 전체 코드는 [이곳에서](https://github.com/jihoAi/RL_study/blob/main/PolicyGradientwithBaseline.ipynb) 볼 수 있습니다.
 
+###Policy & Value Network
+
 baseline을 구현하기 위해서는 Policy Network와 Value Network를 학습시켜야합니다.
 
 Policy Network의 구조는 다음과 같습니다.
@@ -71,5 +73,24 @@ flowchart LR
     A["State (4)"] --> B["MLP<br/>4 → 8 → 4"] --> C["Value V(s)"]
 ```
 
-optimizer는 Adam을 사용하였습니다.
+optimizer는 Adam을 사용했고 학습률은 0.008을 적용했습니다. Activaton은 ReLU를 사용하였습니다.
 
+```python
+def compute_policy_loss(self,log_probs,advantage):
+  return -(log_probs * advantage.detach()).mean()
+
+def compute_value_loss(self,advantage):
+  return (advantage**2).mean()
+```
+
+위의 코드에서 baseline은 $$G_t-V^\pi(s_t)$$ 입니다.
+policy loss에서 baseline 부분은 꼭 detach를 해주어야합니다. 그렇지 않으면 backpropagation을 통해서 Value Network를 의도치 않게 업데이트하게 됩니다.
+Value는 Return을 타겟으로 MSE를 통해 학습시킵니다.
+
+## 결과
+
+학습결과는 아래와 같습니다
+
+![Reward Graph](/assets/img/PGBaselineResult.png)
+
+![Agentactiongif](/assets/gif/cart_poleBaseline.gif)
