@@ -4,6 +4,7 @@ date: 2026-10-02 22:00:00 +0900
 categories: [Reinforcement Learning]
 tags: [reinforcement-learning, theory, implementing]
 math: true
+mermaid: true
 ---
 
 ## 1. Policy Gradient with Baseline 이론
@@ -53,47 +54,22 @@ $$\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\su
 
 ## 2. 구현
 
+전체 코드는 [이곳에서]([https://github.com](https://github.com/jihoAi/RL_study/blob/main/PolicyGradientwithBaseline.ipynb)) 볼 수 있습니다.
+
 baseline을 구현하기 위해서는 Policy Network와 Value Network를 학습시켜야합니다.
 
 Policy Network의 구조는 다음과 같습니다.
 ```mermaid
-flowchart TD
-    A["State<br/>4 dimensions"]
-    B["Linear<br/>4 → 8"]
-    C["ReLU"]
-    D["Linear<br/>8 → 4"]
-    E["ReLU"]
-    F["Linear<br/>4 → 2"]
-    G["Action Logits<br/>2 dimensions"]
-    H["Categorical Distribution"]
-    I["Action<br/>0 or 1"]
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    G --> H
-    H --> I
+flowchart LR
+    A["State (4)"] --> B["MLP<br/>4 → 8 → 4"] --> C["Logits (2)"] --> D["Action"]
 ```
 
 Value Network의 구조는 다음과 같습니다.
 
 ```mermaid
-flowchart TD
-    A["State<br/>4 dimensions"]
-    B["Linear<br/>4 → 8"]
-    C["ReLU"]
-    D["Linear<br/>8 → 4"]
-    E["ReLU"]
-    F["Linear<br/>4 → 1"]
-    G["State Value<br/>V(s)"]
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
+flowchart LR
+    A["State (4)"] --> B["MLP<br/>4 → 8 → 4"] --> C["Value V(s)"]
 ```
+
+optimizer는 Adam을 사용하였습니다.
+
