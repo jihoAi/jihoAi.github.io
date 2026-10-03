@@ -53,4 +53,47 @@ $$\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\su
 
 ## 2. 구현
 
+baseline을 구현하기 위해서는 Policy Network와 Value Network를 학습시켜야합니다.
 
+Policy Network의 구조는 다음과 같습니다.
+```mermaid
+flowchart TD
+    A["State<br/>4 dimensions"]
+    B["Linear<br/>4 → 8"]
+    C["ReLU"]
+    D["Linear<br/>8 → 4"]
+    E["ReLU"]
+    F["Linear<br/>4 → 2"]
+    G["Action Logits<br/>2 dimensions"]
+    H["Categorical Distribution"]
+    I["Action<br/>0 or 1"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+```
+
+Value Network의 구조는 다음과 같습니다.
+
+```mermaid
+flowchart TD
+    A["State<br/>4 dimensions"]
+    B["Linear<br/>4 → 8"]
+    C["ReLU"]
+    D["Linear<br/>8 → 4"]
+    E["ReLU"]
+    F["Linear<br/>4 → 1"]
+    G["State Value<br/>V(s)"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+```
