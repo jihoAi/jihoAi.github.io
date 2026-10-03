@@ -97,7 +97,7 @@ def compute_value_loss(self,advantage):
   return (advantage**2).mean()
 ```
 
-위의 코드에서 baseline은 $$V^\pi(s_t)$$ 입니다. 그리고 $$G_t-V^\pi(s_t)$$를 엄밀히 말하면 advantage는 아니지만 그렇게 부르겠습니다.
+위의 코드에서 baseline은 $$V^\pi(s_t)$$ 입니다. 그리고 $$G_t-V^\pi(s_t)$$를 Advantage의 추정량으로 사용하였습니다..
 policy loss에서 Advantage 부분은 꼭 detach를 해주어야합니다. 그렇지 않으면 backpropagation을 통해서 Value Network를 의도치 않게 업데이트하게 됩니다.
 Value는 Return을 타겟으로 MSE를 통해 학습시킵니다.
 
@@ -112,7 +112,7 @@ Value는 Return을 타겟으로 MSE를 통해 학습시킵니다.
 ## 4. 비교 실험
 
 baseline을 사용한 에이전트와 사용하지 않은 에이전트의 학습양상을 서로 비교하여보겠습니다.
-비교를 위해서 둘 다 학습률은 0.003을 사용했고 50번 학습을 진행하였습니다. 그리고 시드는 42로 고정하였습니다.
+비교를 위해서 둘 다 학습률은 0.003을 사용했고 50번 파라미터를 업데이트하였습니다. 그리고 시드는 42로 고정하였습니다.
 랜덤 시드만 고정하는 정도로는 강화학습의 학습과정에서의 우연성을 무시할 수는 없지만 참고 정도로 사용하면 될 것 같습니다.
 
 ![reward trend](/assets/img/PGwithoutBaseline.png)
@@ -120,5 +120,6 @@ baseline을 사용한 에이전트와 사용하지 않은 에이전트의 학습
 ![reward trend](/assets/img/PGwithBaseline.png)
 
 baseline을 사용하지 않은 에이전트는 총 5020 에피소드, 사용한 에이전트는 총 5040 에피소드를 학습하였습니다.
-baseline을 사용한 쪽이 학습률 0.08에서 더 잘 작동함에도 불구하고 사용하지 않은 쪽보다 더 안정적으로 학습하는 것을 확인할 수 있었습니다.
+이번 실험에서는 baseline을 사용한 에이전트가 baseline을 사용하지 않은 에이전트보다 reward 변동이 상대적으로 작고 안정적인 학습 양상을 보였습니다.
+다만 하나의 seed만 사용한 결과이므로 일반적인 성능 차이라고 단정하기는 어렵습니다.
 
