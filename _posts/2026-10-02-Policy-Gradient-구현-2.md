@@ -54,7 +54,7 @@ $$\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\su
 
 ## 2. 구현
 
-전체 코드는 [이곳에서]([https://github.com](https://github.com/jihoAi/RL_study/blob/main/PolicyGradientwithBaseline.ipynb)) 볼 수 있습니다.
+전체 코드는 [이곳에서](https://github.com/jihoAi/RL_study/blob/main/PolicyGradientwithBaseline.ipynb) 볼 수 있습니다.
 
 baseline을 구현하기 위해서는 Policy Network와 Value Network를 학습시켜야합니다.
 
