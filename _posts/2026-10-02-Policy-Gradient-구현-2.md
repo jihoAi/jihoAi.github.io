@@ -70,7 +70,7 @@ Advantage Function은 특정 상태에서 특정 행동을 선택했을 때의 �
 
 전체 코드는 [이곳에서](https://github.com/jihoAi/RL_study/blob/main/PolicyGradientwithBaseline.ipynb) 볼 수 있습니다.
 
-###Policy & Value Network
+### Policy & Value Network
 
 baseline을 구현하기 위해서는 Policy Network와 Value Network를 학습시켜야합니다.
 
@@ -97,7 +97,7 @@ def compute_value_loss(self,advantage):
   return (advantage**2).mean()
 ```
 
-위의 코드에서 baseline은 $$V^\pi(s_t)$$ 입니다. 그리고 $$G_t-V^\pi(s_t)$$를 advantage라 부르겠습니다. 엄밀히 말해서 advantage는 아니지만 비슷하게 
+위의 코드에서 baseline은 $$V^\pi(s_t)$$ 입니다. 그리고 $$G_t-V^\pi(s_t)$$를 엄밀히 말하면 advantage는 아니지만 그렇게 부르겠습니다.
 policy loss에서 Advantage 부분은 꼭 detach를 해주어야합니다. 그렇지 않으면 backpropagation을 통해서 Value Network를 의도치 않게 업데이트하게 됩니다.
 Value는 Return을 타겟으로 MSE를 통해 학습시킵니다.
 
