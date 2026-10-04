@@ -26,7 +26,7 @@ Temporal Difference(TD)는 model-free방식으로 Return을 사용하는 MC와�
 간단한 TD알고리즘인 TD(0)를 사용하면 $$V(s_t) \leftarrow V(s_t) + \alpha(R_{t+1}+\gamma V(s_{t+1})-V(s_t)$$ 라는 식으로 가치함수를 계산할 수 있습니다.
 
 $$R_{t+1}+\gamma V(s_{t+1})$$ 는 TD target
-$$\delta = R_{t+1}+\gamma V(s_{t+1})-V(s_t)$$는 TD error 라고 부릅니다.
+$$\delta_t = R_{t+1}+\gamma V(s_{t+1})-V(s_t)$$는 TD error 라고 부릅니다.
 
 ### MC vs TD
 
