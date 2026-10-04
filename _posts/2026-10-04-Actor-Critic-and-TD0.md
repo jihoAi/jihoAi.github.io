@@ -1,8 +1,8 @@
 ---
-title: "TD0 & Actor Critic"
+title: "Temporal Difference"
 date: 2026-10-04 13:00:00 +0900
 categories: [Reinforcement Learning]
-tags: [reinforcement-learning, theory, implementing]
+tags: [reinforcement-learning, theory]
 math: true
 ---
 
