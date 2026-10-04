@@ -89,7 +89,7 @@ Frequency heuristic: 더 자주 나온 상태에 더 큰 책임을 부여합니�
 Recency euristic: 최근에 나온 상태에 더 큰 책임을 부여합니다. (불이 켜진게 원인이다)
 
 $$
-\beigin{aligned}
+\begin{aligned}
 &E_0(s) = 0\\
 &E_t(s) = \gamma\lambda E_{t-1}(s) +1 (S_t = s)\\
 \end{aligned}
@@ -100,7 +100,7 @@ $$
 Backward-view TD(λ)는 모든 상태에 대해서 V(s)를 업데이트하고 eligibility trace를 시행합니다.
 
 $$
-\beigin{aligned}
+\begin{aligned}
 &\delta_t = R_{t+1}+\gamma V(S_{t+1}) - V(S_t)\\
 &V(s) \leftarrow V(s) + \alpha\delta_t E_t(s)\\
 \end{aligned}
