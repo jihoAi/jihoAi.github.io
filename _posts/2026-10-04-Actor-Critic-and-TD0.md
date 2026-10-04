@@ -52,7 +52,7 @@ $$
 \begin{aligned}
 &G_{t}^{(1)} = R_{t+1} + \gamma V(S_{t+1}\\
 &G_{t}^{(2)} = R_{t+1} + \gamma R_{t+2} + \gamma^2 V(S_{t+1})\\
-\vdots
+&\vdots \\
 &G_{t}^{(\infty)}= R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{T-1} R_T\\
 &\therefore G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{n-1} V(S_{t+n})\\
 \end{aligned}
