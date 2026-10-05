@@ -29,18 +29,17 @@ $$
 \log\pi_\theta(a_t|s_t)}\delta_t.
 $$
 
-$$\delta_t$$는 td error입니다.
+$$\delta_t$$는 td error이고 Advantage의 추정값이 됩니다.
 
-Critic은 td target과 $$V(s_t)$$의 MSE로 정의합니다
+$$\delta_t = r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$$
+
+Critic의 목적함수는 $$r_t+\gamma V_\phi(s_{t+1})$$(td target)과 $$V(s_t)$$의 MSE로 정의합니다
 
 ## 구현
 
 [코드는 여기서](https://github.com)확인할 수 있습니다.
 
-이번에는 코딩하면서 학습이 잘 되지 않아서 어려움을 겪었습니다. 학습이 잘 되지 않았던 이유는 Value 신경망이 처음에는 부정확한데 신경망 업데이트를 빠르게 하지 않다보니
-학습이 잘 되지 않았던 것 같았습니다. 5000개의 transition이 모였을 때 value, policy network를 업데이트 했는데 cartpole 환경을 썼을 때 학습 초기에 에이전트가 
-진행하는 episode의 길이는 대략 15-20개 정도였습니다. 따라서 대략 250~350개 정도의 에피소드가 모였을 때 업데이트를 하는 것이었는데 32개의 transition마다 업데이트
-하는 것으로 바꾸자 학습 양상이 상당히 개선되었습니다.
+이번에는 코딩하면서 학습이 잘 되지 않아서 어려움을 겪었습니다. 학습이 잘 되지 않았던 이유는 Value 신경망이 처음에는 부정확한데 신경망 업데이트를 빠르게 하지 않다보니 학습이 잘 되지 않았던 것 같았습니다. 5000개의 transition이 모였을 때 value, policy network를 업데이트 했는데 cartpole 환경을 썼을 때 학습 초기에 에이전트가 진행하는 episode의 길이는 대략 15-20개 정도였습니다. 따라서 대략 250~350개 정도의 에피소드가 모였을 때 업데이트를 하는 것이었는데 32개의 transition마다 업데이트하는 것으로 바꾸자 학습 양상이 상당히 개선되었습니다.
 
 ![학습결과그래프](/assets/img/TD0ActorCritic.png)
 
