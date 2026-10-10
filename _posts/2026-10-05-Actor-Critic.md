@@ -13,7 +13,7 @@ math: true
 Monte Carlo policy gradient는 높은 variance를 가지고 있습니다. variance를 줄이기 위해서 
 Actor-Critic 알고리즘을 도입합니다.
 
-Actor Critic은 말 그대로 Actor와 Critic으로 이루어져있습니다.
+Actor Critic은 말 그대로 Actor와 Critic으로 이루어져 있습니다.
 
 Critic은 action-value function(또는 value function) 파라미터를 업데이트합니다.
 
@@ -41,8 +41,8 @@ Critic의 목적함수는 $$r_t+\gamma V_\phi(s_{t+1})$$(TD target)과 $$V(s_t)$
 
 이번에는 코딩하면서 학습이 잘 되지 않아서 어려움을 겪었습니다. 
 
-초기 CartPole 환경에서 episode 길이가 약 15-20 step이었습니다. 그리고 5000개의 transition을 수집해 Actor와 Critic을 업데이트하였습니다. 따라서 대략 250-350개정도의 episode가 진행된 이후에 신경망들이 업데이트 되었기 때문에 개선속도가 느렸습니다. 그래서 업데이트 주기를 32개의 transition으로 줄였고 이후 학습 성능이 개선되는 것을 관찰하였습니다.
+초기 CartPole 환경에서 episode 길이가 약 15-20 step이었습니다. 그리고 5000개의 transition을 수집해 Actor와 Critic을 업데이트하였습니다. 따라서 대략 250-350개 정도의 episode가 진행된 이후에 신경망들이 업데이트되었기 때문에 개선속도가 느렸습니다. 그래서 업데이트 주기를 32개의 transition으로 줄였고 이후 학습 성능이 개선되는 것을 관찰하였습니다.
 
 ![학습결과그래프](/assets/img/TD0ActorCritic.png)
 
-![Cartpole시각화](assets/gif/TD0ActorCritic.gif)
+![Cartpole시각화](/assets/gif/TD0ActorCritic.gif)

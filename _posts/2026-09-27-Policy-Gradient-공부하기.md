@@ -7,17 +7,17 @@ math: true
 ---
 
 ## 1. 들어가며
-최근 피지컬 AI 분야에 흥미가 생겨서 개인적으로 공부를 이어오고 있었습니다
+최근 피지컬 AI 분야에 흥미가 생겨서 개인적으로 공부를 이어오고 있었습니다.
 여러 논문을 읽던 와중 강화학습에 대한 공부가 부족했음을 느꼈고 기초부터
-다시 공부하로 결정하였습니다.
+다시 공부하기로 결정하였습니다.
 
-공부한 자료는 Open AI의 [Spinning up in deep rl](https://spinningup.openai.com/en/latest/)를 주로 참고하였습니다.
+공부한 자료는 OpenAI의 [Spinning Up in Deep RL](https://spinningup.openai.com/en/latest/)을 주로 참고하였습니다.
 
 ## 2. Policy Gradient
 Policy Gradient는 누적 보상의 합을 최대화하는 정책의 파라미터 θ를 찾는 것을 목적으로 합니다.
 
 $$
-J(\pi_\theta)=\mathop{\mathbb{E}}_{\tau\sim\theta}[R_t]
+J(\pi_\theta)=\mathop{\mathbb{E}}_{\tau\sim\pi_\theta}[R(\tau)]
 $$
 
 gradient ascent를 이용하여 policy를 업데이트합니다.
@@ -26,8 +26,8 @@ $$
 \theta_{k+1}=\theta_k+\alpha \nabla_\theta J(\pi_\theta)|_{\theta_k}
 $$
 
-$$\nabla_\theta J(\pi_\theta)$$는 정책의 gradient로 위와 같은 방식으로 정책을 최적화는 것을
-policy gradient algorithm 이라고 부른다. policy gradient algorithm의 대표적인 예시로
+$$\nabla_\theta J(\pi_\theta)$$는 정책의 gradient로 위와 같은 방식으로 정책을 최적화하는 것을
+policy gradient algorithm이라고 부릅니다. policy gradient algorithm의 대표적인 예시로
 Vanilla Policy Gradient, TRPO, PPO 등이 있습니다. 수식은 다음과 같습니다.
 
 $$
@@ -65,5 +65,5 @@ $$
 $$
 
 ## 3. 마치며
-다음 포스트부터는 Policy Gradient 알고리즘들을 직접 코딩해보며 Cart Pole 환경에서 직접 학습시켜
+다음 포스트부터는 Policy Gradient 알고리즘들을 직접 코딩해보며 CartPole 환경에서 직접 학습시켜
 결과를 보고 코드를 개선해나가도록 하겠습니다.
