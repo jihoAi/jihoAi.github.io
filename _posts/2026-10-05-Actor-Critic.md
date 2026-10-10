@@ -25,23 +25,23 @@ Actor는 Critic이 제안하는 방향으로 파라미터를 업데이트합니�
 Actor의 목적함수는 다음과 같이 정의합니다.
 
 $$
-\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\sum\limits_{t=0}^{T}{\nabla_\theta 
-\log\pi_\theta(a_t|s_t)}\delta_t.
+\nabla_\theta J(\pi_\theta)=\underset{\tau\sim\pi_\theta}{\mathbb{E}}\left[\sum\limits_{t=0}^{T}{\nabla_\theta 
+\log\pi_\theta(a_t|s_t)}\delta_t\right].
 $$
 
-$$\delta_t$$는 td error이고 Advantage의 추정값이 됩니다.
+$$\delta_t$$는 TD error이고 Advantage의 추정값이 됩니다.
 
 $$\delta_t = r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$$
 
-Critic의 목적함수는 $$r_t+\gamma V_\phi(s_{t+1})$$(td target)과 $$V(s_t)$$의 MSE로 정의합니다
+Critic의 목적함수는 $$r_t+\gamma V_\phi(s_{t+1})$$(TD target)과 $$V(s_t)$$의 MSE로 정의합니다.
 
 ## 구현
 
-[코드는 여기서](https://github.com)확인할 수 있습니다.
+[코드는 여기서](https://github.com/jihoAi/RL_study/blob/main/TD0ActorCritic.ipynb) 확인할 수 있습니다.
 
 이번에는 코딩하면서 학습이 잘 되지 않아서 어려움을 겪었습니다. 
 
-초기 CartPole 환경에서 epiode 길이가 약 15-20 step이었습니다. 그리고 5000개의 transition을 수집해 Actor와 Critic을 업데이트하였습니다. 따라서 대략 250-350개정도의 episode가 진행된 이후에 신경망들이 업데이트 되었기 때문에 개선속도가 느렸습니다. 그래서 업데이트 주기를 32개의 transition으로 줄였고 이후 학습 성능이 개선되는 것을 관찰하였습니다.
+초기 CartPole 환경에서 episode 길이가 약 15-20 step이었습니다. 그리고 5000개의 transition을 수집해 Actor와 Critic을 업데이트하였습니다. 따라서 대략 250-350개정도의 episode가 진행된 이후에 신경망들이 업데이트 되었기 때문에 개선속도가 느렸습니다. 그래서 업데이트 주기를 32개의 transition으로 줄였고 이후 학습 성능이 개선되는 것을 관찰하였습니다.
 
 ![학습결과그래프](/assets/img/TD0ActorCritic.png)
 
