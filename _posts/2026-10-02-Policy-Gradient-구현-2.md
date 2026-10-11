@@ -68,7 +68,7 @@ Advantage Function은 특정 상태에서 특정 행동을 선택했을 때의 �
 
 ## 2. 구현
 
-전체 코드는 [이곳에서](https://github.com/jihoAi/RL_study/blob/main/PolicyGradientwithBaseline.ipynb) 볼 수 있습니다.
+전체 코드는 [이곳에서](https://github.com/jihoAi/RL_study/blob/main/algorithms/reinforce_baseline.py) 볼 수 있습니다. (글을 쓸 때 실행한 원본 노트북은 [여기](https://github.com/jihoAi/RL_study/blob/main/notebooks/reinforce_baseline.ipynb)에 있습니다.)
 
 ### Policy & Value Network
 
