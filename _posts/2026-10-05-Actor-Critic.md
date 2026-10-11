@@ -37,7 +37,7 @@ Critic의 목적함수는 $$r_t+\gamma V_\phi(s_{t+1})$$(TD target)과 $$V(s_t)$
 
 ## 구현
 
-[코드는 여기서](https://github.com/jihoAi/RL_study/blob/main/TD0ActorCritic.ipynb) 확인할 수 있습니다.
+[코드는 여기서](https://github.com/jihoAi/RL_study/blob/main/algorithms/actor_critic_td0.py) 확인할 수 있습니다. (글을 쓸 때 실행한 원본 노트북은 [여기](https://github.com/jihoAi/RL_study/blob/main/notebooks/actor_critic_td0.ipynb)에 있습니다.)
 
 이번에는 코딩하면서 학습이 잘 되지 않아서 어려움을 겪었습니다. 
 
