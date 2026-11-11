@@ -2,6 +2,7 @@
 :root {
   --bg: #F2F4F8; --surface: #FFFFFF; --ink: #131A2A; --muted: #5A6478; --line: #D5DAE4;
   --accent: #2343D3; --ok: #0B8A7A; --warm: #C2620A; --plot: #FFFFFF;
+  --c1: #2343D3; --c2: #C2620A; --c3: #0B8A7A; --c4: #A0307E; --c5: #5A6478; /* 차트 선 색 */
   --display: "Hahmlet", "Noto Serif KR", "Apple SD Gothic Neo", serif;
   --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -11,6 +12,7 @@
   :root {
     --bg: #0D1220; --surface: #151C2E; --ink: #E7EBF4; --muted: #98A2B8; --line: #28314A;
     --accent: #8AA4FF; --ok: #4FD1BD; --warm: #F2A640; --plot: #FFFFFF;
+    --c1: #8AA4FF; --c2: #F2A640; --c3: #4FD1BD; --c4: #E58AC8; --c5: #98A2B8;
     color-scheme: dark;
   }
 }
@@ -119,3 +121,16 @@ article > .meta { font-family: var(--mono); font-size: .78rem; color: var(--mute
   .post-row a { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .wrap { gap: 44px; } main { gap: 56px; }
 }
+
+/* 데이터 차트 ({% include chart.html %}) */
+figure.chart { margin: 0 0 16px; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 10px; }
+figure.chart canvas { display: block; width: 100%; height: 300px; touch-action: pan-y; }
+figure.chart figcaption { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; font-family: var(--mono); font-size: .75rem; color: var(--ink); min-height: 1.3em; }
+.chart-legend strong { font-weight: 500; margin-right: 4px; }
+.chart-item { display: inline-flex; align-items: center; gap: 6px; }
+.chart-item i { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.chart-item b { font-weight: 500; font-variant-numeric: tabular-nums; }
+.chart-x { color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+@media (max-width: 800px) { figure.chart canvas { height: 240px; } }
+.hero figure.chart { margin: 0; }

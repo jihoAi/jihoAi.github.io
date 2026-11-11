@@ -1,0 +1,5 @@
+<figure class="chart" data-chart="{{ include.src | relative_url }}">
+  <div class="chart-legend"></div>
+  <canvas role="img" aria-label="{{ include.alt | default: include.caption | default: '학습 곡선 차트' }}"></canvas>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

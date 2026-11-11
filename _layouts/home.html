@@ -3,14 +3,16 @@ layout: default
 ---
 {% assign p = site.data.profile %}
 <main>
-  <section class="hero{% unless p.featured.image %} hero-solo{% endunless %}" aria-label="소개 요약">
+  <section class="hero{% unless p.featured.image or p.featured.chart %} hero-solo{% endunless %}" aria-label="소개 요약">
     <div class="hero-text">
       <p class="label">{{ site.tagline }}</p>
       <h1>{{ p.headline }}</h1>
       <p>{{ p.intro }}</p>
       <div class="stack">{{ p.stack | join: " · " }}</div>
     </div>
-    {% if p.featured.image %}
+    {% if p.featured.chart %}
+    {% include chart.html src=p.featured.chart caption=p.featured.caption alt=p.featured.alt %}
+    {% elsif p.featured.image %}
     <figure>
       {% if p.featured.link %}<a href="{{ p.featured.link | relative_url }}">{% endif %}
       <img src="{{ p.featured.image | relative_url }}" alt="{{ p.featured.alt }}">

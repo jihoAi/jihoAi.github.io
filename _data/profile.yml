@@ -7,6 +7,7 @@ stack: [Python, PyTorch, Colab]
 
 # 첫 화면 오른쪽 그림. 지우려면 featured 항목 전체를 삭제하세요.
 featured:
+  # chart: /assets/data/파일.json   # 이 줄을 살리면 image 대신 데이터 차트를 그립니다
   image: /assets/img/A2C/A2CAdvNorm.png
   alt: A2C에서 advantage normalization 적용 여부에 따른 CartPole-v1 학습 곡선
   caption: A2C · advantage normalization 비교
