@@ -1,0 +1,92 @@
+---
+layout: default
+---
+{% assign p = site.data.profile %}
+<main>
+  <section class="hero{% unless p.featured.image %} hero-solo{% endunless %}" aria-label="소개 요약">
+    <div class="hero-text">
+      <p class="label">{{ site.tagline }}</p>
+      <h1>{{ p.headline }}</h1>
+      <p>{{ p.intro }}</p>
+      <div class="stack">{{ p.stack | join: " · " }}</div>
+    </div>
+    {% if p.featured.image %}
+    <figure>
+      {% if p.featured.link %}<a href="{{ p.featured.link | relative_url }}">{% endif %}
+      <img src="{{ p.featured.image | relative_url }}" alt="{{ p.featured.alt }}">
+      {% if p.featured.link %}</a>{% endif %}
+      <figcaption><span>{{ p.featured.caption }}</span><span>{{ p.featured.detail }}</span></figcaption>
+    </figure>
+    {% endif %}
+  </section>
+
+  <section id="about">
+    <p class="label">About</p>
+    <h2>소개</h2>
+    <div class="about">
+      <div class="about-text">
+        {% if p.avatar %}<img class="avatar" src="{{ p.avatar | relative_url }}" alt="{{ site.author }} 프로필 사진" width="64" height="64">{% endif %}
+        <p>{{ p.about }}</p>
+      </div>
+      <dl>
+        {% for f in p.facts %}
+        <dt>{{ f.label }}</dt><dd>{{ f.value }}</dd>
+        {% endfor %}
+      </dl>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="label">Projects</p>
+    <h2>프로젝트</h2>
+    <ul class="rows">
+      {% for pr in site.data.projects %}
+      <li class="project">
+        <span class="pill{% if pr.active %} live{% endif %}">{{ pr.status }}</span>
+        <div>
+          <h3>{{ pr.name }}</h3>
+          <p>{{ pr.description }}</p>
+          <div class="meta">
+            <span>{{ pr.stack }}</span>
+            {% if pr.url %}<a href="{{ pr.url }}">{{ pr.url | remove: "https://" }}</a>{% endif %}
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section id="posts">
+    <p class="label">Posts</p>
+    <h2>글</h2>
+    {% if site.posts.size > 0 %}
+    <div class="filters" id="filters" role="group" aria-label="카테고리로 글 고르기">
+      <button type="button" data-cat="" aria-pressed="true">전체</button>
+      {% for c in site.categories %}
+      <button type="button" data-cat="{{ c[0] | escape }}" aria-pressed="false">{{ c[0] }}</button>
+      {% endfor %}
+    </div>
+    <ul class="rows" id="post-list">
+      {% for post in site.posts %}
+      <li class="post-row" data-cats="{{ post.categories | join: '|' | escape }}">
+        <a href="{{ post.url | relative_url }}">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+          <h3>{{ post.title }}{% if post.description %}<span class="sum">{{ post.description }}</span>{% endif %}</h3>
+          <span class="tag">{{ post.categories | join: " · " }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">아직 글이 없습니다.</p>
+    {% endif %}
+  </section>
+
+  <section id="contact" class="contact">
+    <p class="label">Contact</p>
+    <h2>연락</h2>
+    <p>GitHub: <a href="https://github.com/{{ site.github_username }}">github.com/{{ site.github_username }}</a></p>
+    {% if p.email %}<p>Email: <a href="mailto:{{ p.email }}">{{ p.email }}</a></p>{% endif %}
+  </section>
+</main>
+<script src="{{ '/assets/js/site.js' | relative_url }}"></script>

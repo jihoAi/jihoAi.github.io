@@ -1,0 +1,30 @@
+# 첫 화면의 소개 내용. 여기만 고치면 첫 화면이 바뀝니다.
+headline: 강화학습을 직접 구현하고, 같은 조건에서 비교합니다.
+intro: >-
+  인공지능학과 3학년입니다. 알고리즘을 라이브러리로 돌려 보는 데서 멈추지 않고
+  직접 구현한 뒤, 여러 시드로 실험해 결과를 공정하게 비교하는 과정을 기록합니다.
+stack: [Python, PyTorch, Colab]
+
+# 첫 화면 오른쪽 그림. 지우려면 featured 항목 전체를 삭제하세요.
+featured:
+  image: /assets/img/A2C/A2CAdvNorm.png
+  alt: A2C에서 advantage normalization 적용 여부에 따른 CartPole-v1 학습 곡선
+  caption: A2C · advantage normalization 비교
+  detail: CartPole-v1 · 10 seeds · IQM (95% CI)
+  link: /posts/A2C/
+
+about: >-
+  머신러닝(Machine Learning) 기초에서 출발해 강화학습(Reinforcement Learning)을
+  공부하고 있고, 다음 단계로 로봇과 시뮬레이션을 다루는 Physical AI를 준비하고 있습니다.
+  이 블로그에는 구현 과정, 실험 설계, 논문 리뷰를 남깁니다.
+avatar: /assets/picture.jpeg
+facts:
+  - label: 전공
+    value: 인공지능학과 3학년
+  - label: 관심
+    value: ML 기초 · 강화학습 · Physical AI
+  - label: 도구
+    value: Python, PyTorch, Colab
+
+# 연락처. email 값을 채우면 연락 항목에 함께 표시됩니다.
+email:

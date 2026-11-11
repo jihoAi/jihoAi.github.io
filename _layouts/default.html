@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'ko' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="icon" href="{{ '/assets/picture.jpeg' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% if page.math %}
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+  {% endif %}
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}<span> / {{ site.tagline }}</span></a>
+      <nav aria-label="주요 메뉴">
+        <a href="{{ '/' | relative_url }}#about">소개</a>
+        <a href="{{ '/' | relative_url }}#projects">프로젝트</a>
+        <a href="{{ '/' | relative_url }}#posts">글</a>
+        <a href="{{ '/' | relative_url }}#contact">연락</a>
+      </nav>
+    </header>
+
+    {{ content }}
+
+    <footer>© {{ site.time | date: "%Y" }} {{ site.author }}</footer>
+  </div>
+</body>
+</html>

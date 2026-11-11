@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article>
+  <a class="back" href="{{ '/' | relative_url }}#posts">← 글 목록</a>
+  <h1>{{ page.title }}</h1>
+  <div class="meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+    {% if page.last_modified_at %}<span>수정 {{ page.last_modified_at | date: "%Y.%m.%d" }}</span>{% endif %}
+    {% if page.categories.size > 0 %}<span>{{ page.categories | join: " · " }}</span>{% endif %}
+  </div>
+  <div class="body">
+    {{ content }}
+  </div>
+  {% if page.tags.size > 0 %}
+  <ul class="tags" aria-label="태그">
+    {% for t in page.tags %}<li>#{{ t }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+  <nav class="pager" aria-label="이전 글과 다음 글">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>이전 글</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}"><span>다음 글</span>{{ page.next.title }}</a>{% endif %}
+  </nav>
+</article>

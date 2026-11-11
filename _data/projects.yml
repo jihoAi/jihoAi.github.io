@@ -1,0 +1,28 @@
+# 프로젝트 목록. 항목을 복사해 추가하면 첫 화면에 나타납니다.
+# status: 표시할 상태 글자 / active: true면 강조색으로 표시
+- name: evalrl
+  status: 진행 중
+  active: true
+  description: >-
+    DQN, A2C, PPO를 직접 구현하고, 학습과 평가를 하나의 공통 프레임워크로 통일해
+    같은 조건에서 성능을 비교합니다. 라이브러리처럼 불러 쓸 수 있게 패키지로 정리하는 중입니다.
+  stack: PyTorch · DQN · A2C · PPO
+  url: https://github.com/jihoAi/evalrl
+
+- name: RL_code
+  status: 공개
+  active: false
+  description: >-
+    DQN과 A2C를 직접 구현한 노트북 모음입니다. CartPole-v1에서 시드 10개로 학습하고
+    IQM과 95% 신뢰구간으로 결과를 정리했습니다.
+  stack: PyTorch · Jupyter · CartPole-v1
+  url: https://github.com/jihoAi/RL_code
+
+- name: Physical AI 학습 로그
+  status: 계획
+  active: false
+  description: >-
+    이론과 Colab 실습으로 기초를 쌓은 뒤 시뮬레이션 실습으로 넘어가는 단계별 공부 기록입니다.
+    조작(manipulation), 보행(locomotion), 자율주행·드론을 두루 다룹니다.
+  stack: Simulation · Robotics · RL
+  url:
