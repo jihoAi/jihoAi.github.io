@@ -1,9 +1,12 @@
 # 첫 화면의 소개 내용. 여기만 고치면 첫 화면이 바뀝니다.
 headline: 강화학습을 직접 구현하고, 같은 조건에서 비교합니다.
 intro: >-
-  인공지능학과 3학년입니다. 알고리즘을 라이브러리로 돌려 보는 데서 멈추지 않고
-  직접 구현한 뒤, 여러 시드로 실험해 결과를 공정하게 비교하는 과정을 기록합니다.
-stack: [Python, PyTorch, Colab]
+  세종대학교 인공지능학과 3학년입니다. 강화학습(Reinforcement Learning) 알고리즘을 논문으로 읽고 직접 구현한 뒤, 여러 시드로 실험해 결과를 기록합니다.
+
+  지금까지 DQN과 A2C를 구현했고, PPO까지 더해 세 알고리즘을 같은 조건에서 비교하는 프레임워크 evalrl을 만들고 있습니다.
+
+  다음 단계로 로봇 제어와 시뮬레이션을 다루는 Physical AI를 공부할 계획입니다.
+stack: [Python, PyTorch]
 
 # 첫 화면 오른쪽 그림. 지우려면 featured 항목 전체를 삭제하세요.
 featured:
@@ -25,7 +28,7 @@ facts:
   - label: 관심
     value: ML 기초 · 강화학습 · Physical AI
   - label: 도구
-    value: Python, PyTorch, Colab
+    value: Python, PyTorch
 
 # 연락처. email 값을 채우면 연락 항목에 함께 표시됩니다.
-email:
+email: literallyjiho@gmail.com
