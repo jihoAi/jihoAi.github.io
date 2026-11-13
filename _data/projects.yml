@@ -9,15 +9,6 @@
   stack: PyTorch · DQN · A2C · PPO
   url: https://github.com/jihoAi/evalrl
 
-- name: RL_code
-  status: 공개
-  active: false
-  description: >-
-    DQN과 A2C를 직접 구현한 노트북 모음입니다. CartPole-v1에서 시드 10개로 학습하고
-    IQM과 95% 신뢰구간으로 결과를 정리했습니다.
-  stack: PyTorch · Jupyter · CartPole-v1
-  url: https://github.com/jihoAi/RL_code
-
 - name: Physical AI 학습 로그
   status: 계획
   active: false
