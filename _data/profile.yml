@@ -11,7 +11,7 @@ intro: >-
 # 소개글 아래에 이어지는 한 줄
 about: >-
   이 블로그에는 구현 과정, 실험 설계, 논문 리뷰를 남깁니다.
-avatar: /assets/picture.jpeg
+avatar: /assets/logo.png
 facts:
   - label: 전공
     value: 인공지능학과 3학년

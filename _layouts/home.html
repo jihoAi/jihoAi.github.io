@@ -12,7 +12,7 @@ layout: default
     </div>
     <aside class="profile" aria-label="프로필">
       <div class="who">
-        {% if p.avatar %}<img class="avatar" src="{{ p.avatar | relative_url }}" alt="{{ site.author }} 프로필 사진" width="64" height="64">{% endif %}
+        {% if p.avatar %}<img class="avatar" src="{{ p.avatar | relative_url }}" alt="{{ site.author }} 로고" width="64" height="64">{% endif %}
         <div>
           <strong>{{ site.author }}</strong>
           <a href="https://github.com/{{ site.github_username }}">github.com/{{ site.github_username }}</a>
