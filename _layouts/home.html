@@ -3,23 +3,13 @@ layout: default
 ---
 {% assign p = site.data.profile %}
 <main>
-  <section class="hero{% unless p.featured.image or p.featured.chart %} hero-solo{% endunless %}" aria-label="소개 요약">
+  <section class="hero hero-solo" aria-label="소개 요약">
     <div class="hero-text">
       <p class="label">{{ site.tagline }}</p>
       <h1>{{ p.headline }}</h1>
       <p>{{ p.intro }}</p>
       <div class="stack">{{ p.stack | join: " · " }}</div>
     </div>
-    {% if p.featured.chart %}
-    {% include chart.html src=p.featured.chart caption=p.featured.caption alt=p.featured.alt %}
-    {% elsif p.featured.image %}
-    <figure>
-      {% if p.featured.link %}<a href="{{ p.featured.link | relative_url }}">{% endif %}
-      <img src="{{ p.featured.image | relative_url }}" alt="{{ p.featured.alt }}">
-      {% if p.featured.link %}</a>{% endif %}
-      <figcaption><span>{{ p.featured.caption }}</span><span>{{ p.featured.detail }}</span></figcaption>
-    </figure>
-    {% endif %}
   </section>
 
   <section id="about">
@@ -63,9 +53,9 @@ layout: default
     <h2>글</h2>
     {% if site.posts.size > 0 %}
     <div class="filters" id="filters" role="group" aria-label="카테고리로 글 고르기">
-      <button type="button" data-cat="" aria-pressed="true">전체</button>
+      <button type="button" data-cat="" aria-pressed="true">전체<span class="count">{{ site.posts.size }}</span></button>
       {% for c in site.categories %}
-      <button type="button" data-cat="{{ c[0] | escape }}" aria-pressed="false">{{ c[0] }}</button>
+      <button type="button" data-cat="{{ c[0] | escape }}" aria-pressed="false">{{ c[0] }}<span class="count">{{ c[1].size }}</span></button>
       {% endfor %}
     </div>
     <ul class="rows" id="post-list">

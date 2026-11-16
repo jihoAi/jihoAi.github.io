@@ -8,15 +8,6 @@ intro: >-
   시뮬레이션을 다루는 Physical AI로 넓혀갈 계획입니다.
 stack: [Python, PyTorch]
 
-# 첫 화면 오른쪽 그림. 지우려면 featured 항목 전체를 삭제하세요.
-featured:
-  # chart: /assets/data/파일.json   # 이 줄을 살리면 image 대신 데이터 차트를 그립니다
-  image: /assets/img/A2C/A2CAdvNorm.png
-  alt: A2C에서 advantage normalization 적용 여부에 따른 CartPole-v1 학습 곡선
-  caption: A2C · advantage normalization 비교
-  detail: CartPole-v1 · 10 seeds · IQM (95% CI)
-  link: /posts/A2C/
-
 about: >-
   이 블로그에는 구현 과정, 실험 설계, 논문 리뷰를 남깁니다.
 avatar: /assets/picture.jpeg
@@ -24,7 +15,7 @@ facts:
   - label: 전공
     value: 인공지능학과 3학년
   - label: 관심
-    value: ML 기초 · 강화학습 · Physical AI
+    value: 강화학습 · Physical AI
   - label: 도구
     value: Python, PyTorch
 

@@ -69,6 +69,7 @@ dd { margin: 0; }
 .filters button { font: inherit; font-size: .88rem; padding: 5px 14px; border-radius: 99px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
 .filters button:hover { color: var(--ink); border-color: var(--muted); }
 .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.filters .count { margin-left: 6px; font-family: var(--mono); font-size: .74rem; opacity: .65; font-variant-numeric: tabular-nums; }
 .post-row a { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) auto; gap: 6px 24px; padding: 18px 0; color: var(--ink); text-decoration: none; align-items: baseline; }
 .post-row a:hover h3 { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
 .post-row time, .post-row .tag { font-family: var(--mono); font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; }

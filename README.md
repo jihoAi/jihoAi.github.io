@@ -11,7 +11,7 @@
 title: "PPO"
 date: 2026-11-20 15:00:00 +0900
 categories: [Reinforcement Learning]
-tags: [reinforcement-learning, theory]
+tags: [paper-review]
 math: true
 description: 첫 화면 글 목록에 보일 한 줄 요약 (없어도 됩니다)
 ---
@@ -19,10 +19,17 @@ description: 첫 화면 글 목록에 보일 한 줄 요약 (없어도 됩니다
 
 - 글 주소는 `/posts/제목/`이 됩니다. 제목은 파일 이름의 날짜 뒷부분입니다.
 - `date`가 미래 시각이면 그 시각이 지나기 전에는 글이 보이지 않습니다.
-- `categories`는 첫 화면의 필터 버튼이 됩니다.
+- `categories`에는 분야를 적습니다(예: `Reinforcement Learning`, `Physical AI`). 첫 화면의 필터 버튼이 되고, 새 분야를 쓰면 버튼이 자동으로 생깁니다.
+- `tags`에는 글 종류를 적습니다(예: `paper-review`, `implementation`, `experiment`, `study-note`). 글 맨 아래에 표시됩니다.
 - 수식을 쓰려면 `math: true`를 넣습니다. 문장 안 수식은 `$...$`, 별도 줄 수식은 `$$...$$`입니다.
 - 이미지는 `assets/img/글이름/`에 올리고 `![설명](/assets/img/글이름/파일.png)`로 넣습니다. 설명(대체 텍스트)을 비우지 마세요.
 - 코드는 ```` ```python ```` 으로 감싸면 색이 입혀집니다.
+
+## 글 고치기와 지우기
+
+- 글을 고치려면 `_posts`의 파일을 수정하고, 지우려면 파일을 삭제합니다. 첫 화면의 글 목록과 필터는 자동으로 갱신됩니다.
+- 첫 화면은 특정 글을 직접 가리키지 않으므로, 글을 지워도 빌드가 실패하지 않습니다.
+- 예외는 글 본문에서 다른 글로 직접 건 링크입니다. 글을 지우거나 파일 이름을 바꾸기 전에 저장소에서 `/posts/글이름/`을 검색해 남은 링크가 없는지 확인하세요.
 
 ## 차트 넣기
 
@@ -56,15 +63,13 @@ description: 첫 화면 글 목록에 보일 한 줄 요약 (없어도 됩니다
    {% include chart.html src="/assets/data/a2c-advnorm.json" caption="A2C · advantage normalization 비교" %}
    ```
 
-첫 화면의 대표 그림을 차트로 바꾸려면 `_data/profile.yml`의 `featured` 아래에 `chart: /assets/data/파일.json`을 넣습니다.
-
 파이썬에서는 `json.dump({...}, open("파일.json", "w"))`로 위 형식의 딕셔너리를 저장하면 됩니다. numpy 배열은 `.tolist()`로 바꿔서 넣으세요.
 
 ## 첫 화면 고치기
 
 | 바꿀 것 | 파일 |
 |---|---|
-| 소개 문구, 대표 그림, 프로필 항목, 이메일 | `_data/profile.yml` |
+| 소개 문구, 프로필 항목, 이메일 | `_data/profile.yml` |
 | 프로젝트 목록 | `_data/projects.yml` |
 | 사이트 제목, 한 줄 설명 | `_config.yml` |
 | 색, 글꼴, 차트 선 색 | `assets/css/style.css` 맨 위 `:root` |
