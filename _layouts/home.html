@@ -3,28 +3,29 @@ layout: default
 ---
 {% assign p = site.data.profile %}
 <main>
-  <section class="hero hero-solo" aria-label="소개 요약">
-    <div class="hero-text">
-      <p class="label">{{ site.tagline }}</p>
-      <h1>{{ p.headline }}</h1>
-      <p>{{ p.intro }}</p>
-      <div class="stack">{{ p.stack | join: " · " }}</div>
-    </div>
-  </section>
-
-  <section id="about">
-    <p class="label">About</p>
-    <h2>소개</h2>
-    <div class="about">
-      <div class="about-text">
-        {% if p.avatar %}<img class="avatar" src="{{ p.avatar | relative_url }}" alt="{{ site.author }} 프로필 사진" width="64" height="64">{% endif %}
-        <p>{{ p.about }}</p>
+  <section class="hero" id="about" aria-label="소개">
+    <h1>{{ p.headline }}</h1>
+    <div class="hero-body">
+      <div class="hero-text">
+        {% assign paras = p.intro | split: "
+" %}
+        {% for para in paras %}{% assign t = para | strip %}{% if t != "" %}<p>{{ t }}</p>{% endif %}{% endfor %}
+        {% if p.about %}<p>{{ p.about }}</p>{% endif %}
       </div>
-      <dl>
-        {% for f in p.facts %}
-        <dt>{{ f.label }}</dt><dd>{{ f.value }}</dd>
-        {% endfor %}
-      </dl>
+      <aside class="profile" aria-label="프로필">
+        <div class="who">
+          {% if p.avatar %}<img class="avatar" src="{{ p.avatar | relative_url }}" alt="{{ site.author }} 프로필 사진" width="64" height="64">{% endif %}
+          <div>
+            <strong>{{ site.author }}</strong>
+            <a href="https://github.com/{{ site.github_username }}">github.com/{{ site.github_username }}</a>
+          </div>
+        </div>
+        <dl>
+          {% for f in p.facts %}
+          <dt>{{ f.label }}</dt><dd>{{ f.value }}</dd>
+          {% endfor %}
+        </dl>
+      </aside>
     </div>
   </section>
 

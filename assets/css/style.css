@@ -35,24 +35,21 @@ main { display: flex; flex-direction: column; gap: 72px; }
 main > section { display: flex; flex-direction: column; gap: 22px; }
 main h2 { font-family: var(--display); font-weight: 700; font-size: 1.6rem; line-height: 1.3; }
 
-/* 첫 화면: 소개 요약 */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: center; }
-.hero.hero-solo { grid-template-columns: minmax(0, 1fr); }
-.hero-text { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-.hero h1 { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 4.4vw, 2.9rem); line-height: 1.25; letter-spacing: -.01em; }
-.hero p { margin: 0; color: var(--muted); max-width: 34em; }
-.hero p.label { color: var(--muted); }
-.stack { font-family: var(--mono); font-size: .82rem; }
-.hero figure { margin: 0; min-width: 0; background: var(--plot); border: 1px solid var(--line); border-radius: 6px; padding: 12px 12px 10px; display: flex; flex-direction: column; gap: 8px; }
-.hero figure img { display: block; width: 100%; }
-.hero figcaption { font-family: var(--mono); font-size: .72rem; color: #5A6478; display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: space-between; }
-
-/* 소개 */
-.about { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; }
-.about-text { display: flex; gap: 18px; align-items: flex-start; min-width: 0; }
-.about-text p { margin: 0; max-width: 36em; }
+/* 첫 화면: 소개 (제목은 전체 폭, 아래에 소개글과 프로필) */
+.hero { display: flex; flex-direction: column; gap: 20px; padding-top: 12px; }
+.hero h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 5.2vw, 3.3rem); line-height: 1.22; letter-spacing: -.015em; max-width: 17em; }
+.hero-body { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: start; border-top: 1px solid var(--line); padding-top: 28px; margin-top: 12px; }
+.hero-text { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.hero-text p { margin: 0; max-width: 34em; font-size: 1.05rem; }
+.hero-text p + p { color: var(--muted); font-size: 1rem; }
+.profile { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; display: flex; flex-direction: column; gap: 18px; }
+.who { display: flex; gap: 16px; align-items: center; min-width: 0; }
+.who div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.who strong { font-weight: 600; font-size: 1.05rem; }
+.who a { font-family: var(--mono); font-size: .78rem; }
 .avatar { flex: none; width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
 dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 20px; align-content: start; }
+.profile dl { border-top: 1px solid var(--line); padding-top: 16px; }
 dt { font-family: var(--mono); font-size: .78rem; color: var(--muted); padding-top: 3px; }
 dd { margin: 0; }
 
@@ -117,7 +114,7 @@ article > .meta { font-family: var(--mono); font-size: .78rem; color: var(--mute
 .pager .next { text-align: right; grid-column: 2; }
 
 @media (max-width: 800px) {
-  .hero, .about { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero-body { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .project { grid-template-columns: minmax(0, 1fr); }
   .post-row a { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .wrap { gap: 44px; } main { gap: 56px; }
@@ -134,4 +131,3 @@ figure.chart figcaption { font-family: var(--mono); font-size: .72rem; color: va
 .chart-item b { font-weight: 500; font-variant-numeric: tabular-nums; }
 .chart-x { color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
 @media (max-width: 800px) { figure.chart canvas { height: 240px; } }
-.hero figure.chart { margin: 0; }

@@ -1,4 +1,5 @@
 # 첫 화면의 소개 내용. 여기만 고치면 첫 화면이 바뀝니다.
+# intro는 빈 줄로 문단을 나눕니다.
 headline: 강화학습에서 Physical AI까지, 직접 구현하며 공부합니다.
 intro: >-
   세종대학교 인공지능학과 3학년입니다. 논문을 읽고, 알고리즘을 직접 구현하고,
@@ -6,8 +7,8 @@ intro: >-
 
   지금은 강화학습(Reinforcement Learning)을 다루고 있고, 다음 단계로 로봇 제어와
   시뮬레이션을 다루는 Physical AI로 넓혀갈 계획입니다.
-stack: [Python, PyTorch]
 
+# 소개글 아래에 이어지는 한 줄
 about: >-
   이 블로그에는 구현 과정, 실험 설계, 논문 리뷰를 남깁니다.
 avatar: /assets/picture.jpeg
